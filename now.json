@@ -1,0 +1,6 @@
+{
+    "env": {
+        "PORT": "@welcome-bot-port",
+        "TOKEN": "@welcome-bot-token"
+    }
+}
