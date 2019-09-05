@@ -1,5 +1,6 @@
 const ts = require('tinyspeck'),
   {PORT, TOKEN} = process.env,
+  DEFAULT_PORT = 3000,
   users = {};
 
 
@@ -56,4 +57,4 @@ slack.on('/onboarding', payload => {
 
 
 // incoming http requests
-slack.listen(PORT || 3000);
+slack.listen(PORT || DEFAULT_PORT);
