@@ -56,4 +56,4 @@ slack.on('/onboarding', payload => {
 
 
 // incoming http requests
-slack.listen(PORT);
+slack.listen(PORT || 3000);
