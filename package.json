@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/permaculture-sf/slack-welcome-bot/issues"
   },
-  "homepage": "https://github.com/permaculture-sf/slack-welcome-bot#readme"
+  "homepage": "https://github.com/permaculture-sf/slack-welcome-bot#readme",
+  "devDependencies": {
+    "tinyspeck": "^1.4.2"
+  }
 }
