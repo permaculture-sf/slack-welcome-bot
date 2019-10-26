@@ -1,0 +1,16 @@
+#!/usr/bin/env node
+
+const { exec } = require('child_process');
+const path = require('path');
+
+// path to your application root.
+const APP_ROOT = path.resolve(__dirname + '/..');
+
+function system ([cmd]) {
+  exec(cmd, (err, stdout, stderr) => console.log(stdout, stderr || ''));
+}
+
+process.chdir(APP_ROOT); {
+  system `script/bootstrap`;
+}
+
