@@ -1,2 +1,2 @@
-tap 'homebrew/cask'
-cask 'docker'
+brew 'nvm'
+brew 'docker'

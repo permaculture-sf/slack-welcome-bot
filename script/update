@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const { exec } = require('child_process');
+const { execSync } = require('child_process');
 const path = require('path');
 
 // path to your application root.
@@ -11,7 +11,9 @@ function log([msg]) {
 }
 
 function system ([cmd]) {
-  exec(cmd, (err, stdout, stderr) => console.log(stdout, stderr || ''));
+  return execSync(cmd, {
+    stdio: 'inherit'
+  });
 }
 
 process.chdir(APP_ROOT); {
