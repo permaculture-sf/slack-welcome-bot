@@ -6,6 +6,7 @@
   "scripts": {
     "now": "now",
     "start": "node index.js",
+    "build": "next build",
     "docker:build": "docker build -t psf/slack-welcome-bot .",
     "docker:build:dev": "docker build -t psf/slack-welcome-bot:dev -f dev.dockerfile .",
     "docker:logs:dev": "docker logs slack-welcome-bot-dev-inst",
