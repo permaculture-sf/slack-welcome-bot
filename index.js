@@ -1,60 +1,78 @@
-const ts = require('tinyspeck'),
-  {PORT, TOKEN} = process.env,
-  DEFAULT_PORT = 3000,
-  users = {};
-
-
-// setting defaults for all Slack API calls
-let slack = ts.instance({ token: TOKEN });
-
-
-// build the user's current onboarding message
-function getStatusMessage(user) {
-  const onboarding = {
-    welcome: {
-      text: "Welcome to Permaculture SF!"
-    }
-  };
-
-  return Object.assign({ channel: user }, onboarding.welcome, users[user]);
-}
-
-
-// watch for onboarding slash commands
-slack.on('/onboarding', payload => {
-  let {user_id, response_url} = payload;
-  let message = getStatusMessage(user_id);
-
-  // send current onboarding status privately
-  slack.send(response_url, message);
-});
-
-
-// event handler
-// slack.on('star_added', 'pin_added', 'reaction_added', payload => {
-//   let {type, user, item} = payload.event;
-//
-//   // get the user's current onboarding message
-//   let message = getStatusMessage(user);
+// const ts = require('tinyspeck'),
+//   {PORT, TOKEN} = process.env,
+//   DEFAULT_PORT = 3000,
+//   users = {};
 //
 //
-//   // modify completed step
-//   message.attachments.forEach(step => {
-//     if (step.event === type && !step.completed) {
-//       step.title += " :white_check_mark:";
-//       step.color = "#2ab27b";
-//       step.completed = true;
+// // setting defaults for all Slack API calls
+// let slack = ts.instance({ token: TOKEN });
+//
+//
+// // build the user's current onboarding message
+// function getStatusMessage(user) {
+//   const onboarding = {
+//     welcome: {
+//       text: "Welcome to Permaculture SF!"
 //     }
-//   });
+//   };
+//
+//   return Object.assign({ channel: user }, onboarding.welcome, users[user]);
+// }
 //
 //
-//   // save the message and update the timestamp
-//   slack.send(message).then(res => {
-//     let {ts, channel} = res.data;
-//     users[user] = Object.assign({}, message, { ts: ts, channel: channel });
-//   });
+// // watch for onboarding slash commands
+// slack.on('/onboarding', payload => {
+//   let {user_id, response_url} = payload;
+//   let message = getStatusMessage(user_id);
+//
+//   // send current onboarding status privately
+//   slack.send(response_url, message);
 // });
+//
+//
+// // event handler
+// // slack.on('star_added', 'pin_added', 'reaction_added', payload => {
+// //   let {type, user, item} = payload.event;
+// //
+// //   // get the user's current onboarding message
+// //   let message = getStatusMessage(user);
+// //
+// //
+// //   // modify completed step
+// //   message.attachments.forEach(step => {
+// //     if (step.event === type && !step.completed) {
+// //       step.title += " :white_check_mark:";
+// //       step.color = "#2ab27b";
+// //       step.completed = true;
+// //     }
+// //   });
+// //
+// //
+// //   // save the message and update the timestamp
+// //   slack.send(message).then(res => {
+// //     let {ts, channel} = res.data;
+// //     users[user] = Object.assign({}, message, { ts: ts, channel: channel });
+// //   });
+// // });
+//
+//
+// // incoming http requests
+// slack.listen(PORT || DEFAULT_PORT);
 
+const { WebClient } = require('@slack/web-api');
 
-// incoming http requests
-slack.listen(PORT || DEFAULT_PORT);
+// An access token (from your Slack app or custom integration - xoxp, xoxb)
+const token = process.env.TOKEN;
+
+const web = new WebClient(token);
+
+// This argument can be a channel ID, a DM ID, a MPDM ID, or a group ID
+const conversationId = 'C1232456';
+
+(async () => {
+  // See: https://api.slack.com/methods/chat.postMessage
+  const res = await web.chat.postMessage({ channel: conversationId, text: 'Hello there' });
+
+  // `res` contains information about the posted message
+  console.log('Message sent: ', res.ts);
+})();
