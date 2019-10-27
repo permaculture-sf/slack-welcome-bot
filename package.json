@@ -16,12 +16,13 @@
     "docker:run:dev": "docker run -i --rm --name slack-welcome-bot-dev-inst -v $PWD:/psf/dist/slack-welcome-bot psf/slack-welcome-bot:dev",
     "docker:shell:dev": "docker exec -it slack-welcome-bot-dev-inst /bin/bash",
     "docker:stop": "docker stop slack-welcome-bot-inst; exit 0",
-    "docker:stop:dev": "docker stop slack-welcome-bot-dev-inst; exit 0"
+    "docker:stop:dev": "docker stop slack-welcome-bot-dev-inst; exit 0",
+    "eslint": "eslint --fix ."
   },
   "husky": {
     "hooks": {
-      "pre-commit": "eslint --fix .",
-      "pre-push": "eslint --fix ."
+      "pre-commit": "eslint",
+      "pre-push": "eslint"
     }
   },
   "repository": {
