@@ -1,6 +1,7 @@
 require('./config/env');
 
 const { WebClient } = require('@slack/web-api');
+const debug = require('debug')('bot');
 
 // An access token (from your Slack app or custom integration - xoxp, xoxb)
 const token = process.env.TOKEN;
@@ -15,5 +16,5 @@ const conversationId = 'C1232456';
   const res = await web.chat.postMessage({ channel: conversationId, text: 'Hello there' });
 
   // `res` contains information about the posted message
-  console.log('Message sent: ', res.ts);
+  debug.log('Message sent: ', res.ts);
 })();

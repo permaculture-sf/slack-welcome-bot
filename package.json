@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "now": "now",
-    "start": "node index.js",
+    "start": "DEBUG=true node index.js",
     "build": "next build",
     "docker:build": "docker build -t psf/slack-welcome-bot .",
     "docker:build:dev": "docker build -t psf/slack-welcome-bot:dev -f dev.dockerfile .",
@@ -45,6 +45,7 @@
   "dependencies": {
     "@slack/events-api": "^2.3.0",
     "@slack/web-api": "^5.3.0",
+    "debug": "^4.1.1",
     "dotenv": "^8.2.0"
   }
 }
