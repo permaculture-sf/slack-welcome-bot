@@ -18,6 +18,12 @@
     "docker:stop": "docker stop slack-welcome-bot-inst; exit 0",
     "docker:stop:dev": "docker stop slack-welcome-bot-dev-inst; exit 0"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "eslint --fix .",
+      "pre-push": "eslint --fix ."
+    }
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/permaculture-sf/slack-welcome-bot.git"
