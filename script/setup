@@ -1,0 +1,25 @@
+#!/usr/bin/env node
+
+const { execSync } = require('child_process');
+const path = require('path');
+
+// path to your application root.
+const APP_ROOT = path.resolve(__dirname + '/..');
+
+function log([msg]) {
+  console.log(msg)
+}
+
+function system ([cmd]) {
+  return execSync(cmd, {
+    stdio: 'inherit'
+  });
+}
+
+process.chdir(APP_ROOT); {
+  system `script/bootstrap`;
+
+  log `==> Configure docker deamon`;
+  system `docker-machine create --driver virtualbox default`
+  system `eval "$(docker-machine env default)"`
+}
