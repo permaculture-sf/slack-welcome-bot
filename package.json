@@ -38,9 +38,12 @@
   "devDependencies": {
     "eslint": "^6.6.0",
     "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-prettier": "^6.5.0",
     "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-tape": "^1.1.0",
     "husky": "^3.0.9",
-    "now": "^16.4.3"
+    "now": "^16.4.3",
+    "tape": "^4.11.0"
   },
   "dependencies": {
     "@slack/events-api": "^2.3.0",
