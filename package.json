@@ -18,7 +18,9 @@
     "docker:stop": "docker stop slack-welcome-bot-inst; exit 0",
     "docker:stop:dev": "docker stop slack-welcome-bot-dev-inst; exit 0",
     "eslint": "eslint --fix .",
-    "prepush": "npm run eslint"
+    "prepush": "npm run eslint",
+    "test": "npm run test:unit",
+    "test:unit": "tape \"src/**/*.test.js\" | faucet"
   },
   "husky": {
     "hooks": {
