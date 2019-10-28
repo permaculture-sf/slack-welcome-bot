@@ -1,9 +1,11 @@
 {
-    "build": {
-        "env": {
-            "PORT": "@welcome-bot-port",
-            "TOKEN": "@welcome-bot-token",
-            "SIGNING_SECRET": "@welcome-bot-signing-secret"
-        }
+  "version": 1,
+  "type": "docker",
+  "build": {
+    "env": {
+      "PORT": "@welcome-bot-port",
+      "TOKEN": "@welcome-bot-token",
+      "SIGNING_SECRET": "@welcome-bot-signing-secret"
     }
+  }
 }
