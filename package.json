@@ -18,14 +18,15 @@
     "docker:stop": "docker stop slack-welcome-bot-inst; exit 0",
     "docker:stop:dev": "docker stop slack-welcome-bot-dev-inst; exit 0",
     "eslint": "eslint --fix .",
-    "prepush": "npm run eslint",
+    "git:prepush": "npm run test",
+    "git:precommit": "lint-staged",
     "test": "npm run test:unit",
     "test:unit": "tape \"src/**/*.test.js\" | faucet"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged",
-      "pre-push": "npm run prepush"
+      "pre-commit": "npm run git:precommit --silent",
+      "pre-push": "npm run git:prepush --silent"
     }
   },
   "repository": {
@@ -64,6 +65,10 @@
     ],
     "*.js": [
       "eslint --fix",
+      "git add"
+    ],
+    "*.test.js": [
+      "npm run test:unit",
       "git add"
     ]
   }
