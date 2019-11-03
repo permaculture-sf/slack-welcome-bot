@@ -6,7 +6,9 @@
   "scripts": {
     "now": "now",
     "start": "DEBUG=true node index.js",
-    "build": "echo \"No build cmd\"",
+    "serve": "$(npm bin)/netlify dev",
+    "build": "npm run build:api",
+    "build:api": "netlify-lambda build src/api",
     "docker:build": "docker build -t psf/slack-welcome-bot .",
     "docker:build:dev": "docker build -t psf/slack-welcome-bot:dev -f dev.dockerfile .",
     "docker:logs:dev": "docker logs slack-welcome-bot-dev-inst",
@@ -48,6 +50,8 @@
     "faucet": "0.0.1",
     "husky": "^3.0.9",
     "lint-staged": "^9.4.2",
+    "netlify-cli": "^2.20.2",
+    "netlify-lambda": "^1.6.3",
     "now": "^16.4.3",
     "prettier": "^1.18.2",
     "tape": "^4.11.0"

@@ -28,6 +28,7 @@ pids
 
 # production
 /build
+/build-api
 
 # misc
 .DS_Store
