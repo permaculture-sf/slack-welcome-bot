@@ -4,13 +4,8 @@ module.exports = {
     commonjs: true,
     es6: true,
   },
-  extends: [
-    'airbnb-base',
-    'plugin:tape/recommended'
-  ],
-  plugins: [
-    'tape'
-  ],
+  extends: ['airbnb-base', 'plugin:tape/recommended'],
+  plugins: ['tape'],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
@@ -18,6 +13,5 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 2018,
   },
-  rules: {
-  },
+  rules: {},
 };
