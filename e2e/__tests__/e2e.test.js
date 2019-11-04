@@ -13,7 +13,6 @@ test('app exists', (t) => new Promise(() => {
 
   startServer().then((pid) => {
     serverProcessId = pid;
-    debug('Server started on http://localhost:8888');
     request('http://localhost:8888')
       .get('/.netlify/functions/hello')
       .expect((res) => {

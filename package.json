@@ -13,8 +13,8 @@
     "git:prepush": "npm run test",
     "git:precommit": "lint-staged",
     "test": "npm run test:unit && npm run test:e2e",
-    "test:e2e": "tape \"e2e/**/*.test.js\" | faucet",
-    "test:unit": "tape \"src/**/*.test.js\" | faucet"
+    "test:e2e": "tape \"e2e/**/*.test.js\" | tap-notify | tap-diff",
+    "test:unit": "tape \"src/**/*.test.js\" | tap-notify | tap-diff"
   },
   "husky": {
     "hooks": {
@@ -38,15 +38,15 @@
     "eslint-config-prettier": "^6.5.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-tape": "^1.1.0",
-    "faucet": "0.0.1",
     "husky": "^3.0.9",
     "jest": "^24.9.0",
     "lint-staged": "^9.4.2",
     "netlify-cli": "^2.20.2",
     "netlify-lambda": "^1.6.3",
-    "now": "^16.4.3",
     "prettier": "^1.18.2",
     "supertest": "^4.0.2",
+    "tap-diff": "^0.1.1",
+    "tap-notify": "^1.0.0",
     "tape": "^4.11.0",
     "tree-kill": "^1.2.1"
   },
