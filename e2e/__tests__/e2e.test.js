@@ -15,14 +15,15 @@ test('app exists', (t) => new Promise(() => {
     serverProcessId = pid;
     request('http://localhost:8888')
       .get('/.netlify/functions/hello')
+      .expect(200)
       .expect((res) => {
         t.deepEqual(JSON.parse(res.text), {
           msg: 'Hello, World!',
         });
       })
-      .expect(200, () => {
+      .end((err) => {
         kill(serverProcessId);
-        t.end();
+        t.end(err);
       });
   });
 }));
