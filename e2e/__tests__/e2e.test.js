@@ -15,6 +15,7 @@ test('app exists', (t) => new Promise(() => {
     serverProcessId = pid;
     request('http://localhost:8888')
       .get('/.netlify/functions/hello')
+      .expect('Content-Type', /json/)
       .expect(200)
       .expect((res) => {
         t.deepEqual(JSON.parse(res.text), {
