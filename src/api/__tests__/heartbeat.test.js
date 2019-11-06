@@ -1,15 +1,20 @@
-const test = require('tape');
+const test = require('tape-async');
 const { handler } = require('../heartbeat');
 
-test('heartbeat', (t) => {
-  const request = handler();
+test('heartbeat', async (t) => {
+  let response;
 
-  request
-    .then((res) => {
-      t.ok(res, 'returns response');
-      t.equal(res.body, '{"msg":true}', 'heartbeat status');
-      t.equal(res.headers['Content-Type'], 'application/json', 'json header');
-      t.end();
-    })
-    .catch(t.end);
+  try {
+    response = await handler();
+    t.ok(response, 'returns response');
+    t.equal(response.body, '{"msg":true}', 'heartbeat status');
+    t.equal(
+      response.headers['Content-Type'],
+      'application/json',
+      'json header',
+    );
+    t.end();
+  } catch (e) {
+    t.end(e);
+  }
 });
