@@ -26,12 +26,11 @@ test('heartbeat endpoint', (t) => new Promise(() => {
   });
 }));
 
-test('slack event endpoint', (t) => new Promise(() => {
-  let serverProcessId;
+test('slack event endpoint', async (t) => {
+  const serverProcessId = await startServer();
 
-  startServer().then((pid) => {
-    serverProcessId = pid;
-    request('http://localhost:8888')
+  try {
+    await request('http://localhost:8888')
       .get('/.netlify/functions/slack-events')
       .expect(200)
       .expect('Content-Type', /json/)
@@ -39,10 +38,25 @@ test('slack event endpoint', (t) => new Promise(() => {
         t.deepEqual(JSON.parse(res.text), {
           msg: true,
         });
-      })
-      .end((err) => {
-        kill(serverProcessId);
-        t.end(err);
       });
-  });
-}));
+
+    await request('http://localhost:8888')
+      .post('/.netlify/functions/slack-events')
+      .send({
+        type: 'url_verification',
+        token: 'sn9B4G2rxxxxxxxxxxxxxxxx',
+        challenge: '7X8z79kUqugwJuhry5xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+      })
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .expect((res) => {
+        t.deepEqual(JSON.parse(res.text), {
+          accepted: '7X8z79kUqugwJuhry5xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+        });
+      });
+  } catch (err) {
+    t.end(err);
+  }
+
+  kill(serverProcessId);
+});

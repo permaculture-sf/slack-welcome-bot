@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/prefer-default-export
 async function handler(event) {
-  const params = event && event.queryStringParameters;
-  const challenge = params ? params.challenge : false;
+  const data = event && event.httpMethod === 'POST' && JSON.parse(event.body);
+  const challenge = data ? data.challenge : false;
 
   return {
     statusCode: 200,

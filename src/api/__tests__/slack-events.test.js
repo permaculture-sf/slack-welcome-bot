@@ -23,11 +23,12 @@ test('slack-events', async (t) => {
 test('slack-events', async (t) => {
   let response;
   const request = {
-    queryStringParameters: {
+    httpMethod: 'POST',
+    body: JSON.stringify({
       type: 'url_verification',
       token: 'sn9B4G2rxxxxxxxxxxxxxxxx',
       challenge: '7X8z79kUqugwJuhry5xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-    },
+    }),
   };
 
   try {
