@@ -11,7 +11,7 @@ test('heartbeat endpoint', (t) => new Promise(() => {
   startServer().then((pid) => {
     serverProcessId = pid;
     request('http://localhost:8888')
-      .get('/.netlify/functions/heartbeat')
+      .get('/api/heartbeat')
       .expect(200)
       .expect('Content-Type', /json/)
       .expect((res) => {
@@ -31,7 +31,7 @@ test('slack event endpoint', async (t) => {
 
   try {
     await request('http://localhost:8888')
-      .get('/.netlify/functions/slack-events')
+      .get('/api/slack-events')
       .expect(200)
       .expect('Content-Type', /json/)
       .expect((res) => {
@@ -41,7 +41,7 @@ test('slack event endpoint', async (t) => {
       });
 
     await request('http://localhost:8888')
-      .post('/.netlify/functions/slack-events')
+      .post('/api/slack-events')
       .send({
         type: 'url_verification',
         token: 'sn9B4G2rxxxxxxxxxxxxxxxx',
