@@ -4,7 +4,7 @@
   functionsSource = "src/api"
   publish = "public"
 [build.environment]
-  AWS_LAMBDA_JS_RUNTIME = nodejs10.x
+  AWS_LAMBDA_JS_RUNTIME = "nodejs10.x"
 [[redirects]]
   from = "/api/*"
   to = "/.netlify/functions/:splat"
