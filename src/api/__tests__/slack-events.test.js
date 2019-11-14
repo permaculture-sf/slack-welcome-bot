@@ -1,16 +1,6 @@
 const test = require('tape-async');
 const { handler } = require('../slack-events');
 
-test('slack-events default', async (t) => {
-  const response = await handler();
-
-  t.ok(response, 'returns response');
-  t.equal(response.statusCode, 200, 'events status');
-  t.equal(response.body, '{"msg":true}', 'events status');
-  t.equal(response.headers['Content-Type'], 'application/json', 'json header');
-  t.end();
-});
-
 test('slack-events url_verification', async (t) => {
   const mockChallenge = '7X8z79kUqugwJuhry5xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
   const request = {

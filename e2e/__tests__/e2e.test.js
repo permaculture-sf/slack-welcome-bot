@@ -31,16 +31,6 @@ test('slack event endpoint', async (t) => {
 
   try {
     await request('http://localhost:8888')
-      .get('/api/slack-events')
-      .expect(200)
-      .expect('Content-Type', /json/)
-      .expect((res) => {
-        t.deepEqual(JSON.parse(res.text), {
-          msg: true,
-        });
-      });
-
-    await request('http://localhost:8888')
       .post('/api/slack-events')
       .send({
         type: 'url_verification',
