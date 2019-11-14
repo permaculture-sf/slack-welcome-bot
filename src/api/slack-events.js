@@ -1,6 +1,9 @@
+const RequestEvent = require('../lib/request-event');
+
 // eslint-disable-next-line import/prefer-default-export
 async function handler(event) {
-  const data = event && event.httpMethod === 'POST' && JSON.parse(event.body);
+  const requestEvent = new RequestEvent(event);
+  const data = event && requestEvent.isPost() && requestEvent.parsedBody();
   const challenge = data ? data.challenge : false;
 
   return {
