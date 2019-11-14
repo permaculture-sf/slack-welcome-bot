@@ -8,6 +8,10 @@ class RequestEvent {
   isPost() {
     return this.event.httpMethod === 'POST';
   }
+
+  parsedBody() {
+    return JSON.parse(this.event.body);
+  }
 }
 
 module.exports = RequestEvent;
