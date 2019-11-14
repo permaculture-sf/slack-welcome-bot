@@ -1,7 +1,7 @@
 const test = require('tape-async');
 const { handler } = require('../slack-events');
 
-test('slack-events', async (t) => {
+test('slack-events default', async (t) => {
   let response;
 
   try {
@@ -20,7 +20,7 @@ test('slack-events', async (t) => {
   }
 });
 
-test('slack-events', async (t) => {
+test('slack-events url_verification', async (t) => {
   let response;
   const request = {
     httpMethod: 'POST',
