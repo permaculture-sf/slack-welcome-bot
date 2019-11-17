@@ -6,6 +6,10 @@ class SlackEvent {
   isChallenge() {
     return typeof this.event.challenge === 'string';
   }
+
+  isTeamJoin() {
+    return this.event.event.type === 'team_join';
+  }
 }
 
 module.exports = SlackEvent;
